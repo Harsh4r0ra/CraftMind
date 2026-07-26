@@ -14,7 +14,7 @@ const Footer = () => {
               CRAFTMIND
             </h3>
             <p className="text-sm text-soft text-justify">
-              Your trusted tech partner for web, app, AI, and enterprise solutions.
+              Custom CRM, ERP, and workflow automation systems for companies still running on spreadsheets.
             </p>
           </div>
 
@@ -61,22 +61,17 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-soft">
               <li>
                 <Link to="/services" className="transition-smooth hover:text-white">
-                  Web Development
+                  CRM Systems
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="transition-smooth hover:text-white">
-                  Mobile Apps
+                  ERP Systems
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="transition-smooth hover:text-white">
-                  AI & ML Solutions
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="transition-smooth hover:text-white">
-                  Enterprise Solutions
+                  Workflow Automation
                 </Link>
               </li>
             </ul>

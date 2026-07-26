@@ -16,26 +16,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import { MessageCircle } from "lucide-react";
 import { getBreadcrumbSchema, getLocalBusinessSchema } from "@/lib/structuredData";
 import { trackFormSubmission } from "@/lib/analytics";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().optional(),
-  projectTitle: z.string().min(3, "Project title must be at least 3 characters"),
-  projectDescription: z.string().min(10, "Please provide more details about your project"),
-  budget: z.string().min(1, "Please select a budget range"),
-  deadline: z.string().optional(),
+  company: z.string().min(2, "Company must be at least 2 characters"),
+  whatsBroken: z.string().min(10, "Tell us a bit more about what's currently manual or broken"),
 });
 
 const Contact = () => {
@@ -46,43 +36,36 @@ const Contact = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      email: "",
-      phone: "",
-      projectTitle: "",
-      projectDescription: "",
-      budget: "",
-      deadline: "",
+      company: "",
+      whatsBroken: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
-    
+
     try {
       // Track form submission
-      trackFormSubmission("contact_form");
-      
+      trackFormSubmission("process_audit_form");
+
       // Submit to Formcarry
       const formData = new FormData();
       formData.append("name", values.name);
-      formData.append("email", values.email);
-      if (values.phone) formData.append("phone", values.phone);
-      formData.append("projectTitle", values.projectTitle);
-      formData.append("projectDescription", values.projectDescription);
-      formData.append("budget", values.budget);
-      if (values.deadline) formData.append("deadline", values.deadline);
-      
+      formData.append("company", values.company);
+      formData.append("whatsBroken", values.whatsBroken);
+      formData.append("formType", "Process Audit Booking");
+
       const response = await fetch("https://formcarry.com/s/luxzm-uXvJi", {
         method: "POST",
         body: formData,
       });
-      
+
       // Formcarry may return various status codes (200, 302, etc.) but form is submitted
       // If we get any response (not a network error), consider it successful
       if (response.status >= 200 && response.status < 500) {
         toast({
-          title: "Proposal Submitted!",
-          description: "We'll get back to you within 24 hours.",
+          title: "Request sent!",
+          description: "We'll reach out to schedule your 20-minute process audit.",
         });
         form.reset();
       } else {
@@ -93,7 +76,7 @@ const Contact = () => {
       // Only show error for actual network/connection errors
       // If form was submitted but response parsing failed, still show success
       console.error("Form submission error:", error);
-      
+
       // Check if it's a network error
       if (error instanceof TypeError && error.message.includes("fetch")) {
         toast({
@@ -104,8 +87,8 @@ const Contact = () => {
       } else {
         // For other errors, assume form was submitted (Formcarry received it)
         toast({
-          title: "Proposal Submitted!",
-          description: "We'll get back to you within 24 hours.",
+          title: "Request sent!",
+          description: "We'll reach out to schedule your 20-minute process audit.",
         });
         form.reset();
       }
@@ -116,6 +99,8 @@ const Contact = () => {
 
   const baseUrl = import.meta.env.VITE_SITE_URL || "https://craftmind.co.in";
   const contactUrl = `${baseUrl}/contact`;
+  const whatsappNumber = "+919136474511";
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hi, I'd like to book a process audit.")}`;
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: "Home", url: baseUrl },
@@ -141,9 +126,8 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Contact CraftMind | Get Quote for Web & Mobile App Development"
-        description="Contact CraftMind in Chennai, India for web development, mobile apps, AI solutions, and enterprise software. Get a free quote for your project. Call +91 9136474511 or submit your project proposal."
-        keywords="contact CraftMind Chennai, get quote web development, project proposal, hire developers Chennai, custom software development, technology consultation India, web development quote"
+        title="Book a Process Audit | CraftMind CRM, ERP & Automation"
+        description="Tell CraftMind what's currently manual or broken and book a 20-minute process audit. We build custom CRM, ERP, and workflow automation systems in Chennai, India. Call +91 9136474511."
         image={`${baseUrl}/placeholder.svg`}
         url={contactUrl}
         structuredData={structuredData}
@@ -155,10 +139,10 @@ const Contact = () => {
       <section className="gradient-hero py-40">
         <div className="container mx-auto px-4 text-center animate-fade-in">
           <h1 className="mb-6 text-4xl font-bold md:text-6xl">
-            Let&apos;s Build <span className="holographic-text">Together</span>
+            Book a 20-min <span className="holographic-text">process audit</span>
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-soft md:text-xl">
-            Have a project in mind? Share your ideas with us and let's create something amazing
+            Tell us what's currently manual or broken and we'll tell you what a custom CRM, ERP, or automation system would look like for your business.
           </p>
         </div>
       </section>
@@ -213,81 +197,68 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-[#25D366] shadow-cesta-glow" aria-hidden="true">
+                    <MessageCircle className="text-white" size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">WhatsApp</h3>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-soft transition-smooth hover:text-white"
+                    >
+                      Message us directly
+                    </a>
+                  </div>
+                </div>
               </address>
             </div>
 
             {/* Contact Form */}
             <div className="lg:col-span-2 animate-fade-in" style={{ animationDelay: "0.2s" }}>
               <div className="glass-card glass-border rounded-3xl border border-white/10 p-6 shadow-cesta-card md:p-10">
-                <h2 className="mb-6 text-2xl font-bold">Project Proposal</h2>
+                <h2 className="mb-6 text-2xl font-bold">Book a 20-min process audit</h2>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name *</FormLabel>
-                            <FormControl>
-                              <Input {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email *</FormLabel>
-                            <FormControl>
-                              <Input type="email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
                     <FormField
                       control={form.control}
-                      name="phone"
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone (Optional)</FormLabel>
-                            <FormControl>
-                              <Input type="tel" {...field} />
-                            </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="projectTitle"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Title *</FormLabel>
-                            <FormControl>
-                              <Input {...field} />
-                            </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="projectDescription"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Project Description *</FormLabel>
+                          <FormLabel>Name *</FormLabel>
                           <FormControl>
-                            <Textarea 
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="company"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Company *</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="whatsBroken"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>What's currently manual/broken? *</FormLabel>
+                          <FormControl>
+                            <Textarea
                               className="min-h-32"
                               {...field}
                             />
@@ -297,54 +268,14 @@ const Contact = () => {
                       )}
                     />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="budget"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Estimated Budget *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select budget range" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="50k-1l">₹50,000 - ₹1,00,000</SelectItem>
-                                <SelectItem value="1l-2.5l">₹1,00,000 - ₹2,50,000</SelectItem>
-                                <SelectItem value="2.5l-5l">₹2,50,000 - ₹5,00,000</SelectItem>
-                                <SelectItem value="5l+">₹5,00,000+</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="deadline"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Deadline (Optional)</FormLabel>
-                            <FormControl>
-                              <Input type="date" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <Button 
-                      type="submit" 
-                      variant="hero" 
-                      size="lg" 
+                    <Button
+                      type="submit"
+                      variant="hero"
+                      size="lg"
                       className="w-full shadow-cesta-glow text-lg bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 hover:from-purple-500 hover:via-pink-400 hover:to-orange-400"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Submitting..." : "Submit Proposal"}
+                      {isSubmitting ? "Sending..." : "Book a 20-min process audit"}
                       <FaPaperPlane className="ml-2" style={{ fontSize: '1.125rem' }} />
                     </Button>
                   </form>

@@ -1,83 +1,44 @@
-import { 
-  FaBuilding, 
-  FaUsers, 
-  FaMobileAlt, 
-  FaBrain, 
-  FaDatabase, 
-  FaHandshake, 
-  FaGlobe, 
-  FaLink 
-} from "react-icons/fa";
+import { FaHandshake, FaDatabase, FaCogs } from "react-icons/fa";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const services = [
   {
-    icon: FaBuilding,
-    title: "Enterprise Solutions",
-    description: "Improve business efficiency while reducing operational costs.",
-    iconGradient: "icon-gradient-purple",
-  },
-  {
-    icon: FaUsers,
-    title: "Hire Developer",
-    description: "Hire dedicated developers to bring your ideas to life.",
-    iconGradient: "icon-gradient-electric",
-  },
-  {
-    icon: FaMobileAlt,
-    title: "Mobile App Development",
-    description: "Build user-friendly and engaging mobile apps.",
-    iconGradient: "icon-gradient-gold",
-  },
-  {
-    icon: FaBrain,
-    title: "AI & ML Solutions",
-    description: "Reshape your business with intelligent, data-driven technology.",
-    iconGradient: "icon-gradient-cyan",
-  },
-  {
-    icon: FaDatabase,
-    title: "ERP Solutions",
-    description: "Streamline operations with customizable ERP systems.",
-    iconGradient: "icon-gradient-purple",
-  },
-  {
     icon: FaHandshake,
-    title: "CRM Development",
-    description: "Enhance customer relationships with efficient CRM tools.",
+    title: "CRM systems",
+    description: "Lead tracking, sales pipeline, and customer follow-up automation, so no lead sits in someone's inbox.",
     iconGradient: "icon-gradient-pink",
   },
   {
-    icon: FaGlobe,
-    title: "Website Development",
-    description: "Build high-performance, modern websites.",
-    iconGradient: "icon-gradient-blue",
+    icon: FaDatabase,
+    title: "ERP systems",
+    description: "Inventory, procurement, order processing, and reporting in one place instead of five spreadsheets.",
+    iconGradient: "icon-gradient-purple",
   },
   {
-    icon: FaLink,
-    title: "Blockchain Development",
-    description: "Utilize secure and scalable blockchain technology.",
+    icon: FaCogs,
+    title: "Workflow automation",
+    description: "Approvals, invoicing, notifications, and integrations between the tools you already use.",
     iconGradient: "icon-gradient-cyan",
   },
 ];
 
 const ServicesGrid = () => {
   return (
-    <section className="relative z-10 bg-transparent py-24" aria-label="Our Services">
+    <section className="relative z-10 bg-transparent py-24" aria-label="What We Build">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center animate-fade-in">
           <h2 id="services-heading" className="text-3xl font-bold md:text-5xl">
-            Our <span className="holographic-text">Development Services</span>
+            What <span className="holographic-text">We Build</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-soft text-justify">
-            Comprehensive solutions tailored to your business needs. Explore our <a href="/services" className="text-cesta-electric hover:underline">full range of services</a> to find the perfect solution for your business.
+            Three ways we help companies replace manual processes with systems that scale. Explore our <a href="/services" className="text-cesta-electric hover:underline">full range of services</a> to find the right fit.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {services.map((service, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="glass-card border border-white/10 transition-smooth hover:scale-[1.03] hover:shadow-cesta-glow animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >

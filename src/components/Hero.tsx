@@ -87,6 +87,10 @@ const heroStyles = {
   },
 }
 
+// TODO: no Calendly/booking link is connected yet. Once one exists, point the
+// CTA at BOOKING_URL directly instead of the inline form below.
+const BOOKING_URL = ""
+
 const Hero = () => {
   const containerRef = useRef(null)
   const canvasRef = useRef(null)
@@ -109,26 +113,26 @@ const Hero = () => {
     setIsSubmitting(true)
     try {
       // Track form submission
-      trackFormSubmission("call_scheduling_form")
-      
+      trackFormSubmission("process_audit_form")
+
       // Submit to Formcarry
       const formData = new FormData()
       formData.append("name", name)
       formData.append("email", email)
       formData.append("service", service || "Not specified")
-      formData.append("formType", "Call Scheduling")
-      
+      formData.append("formType", "Process Audit Booking")
+
       const response = await fetch("https://formcarry.com/s/luxzm-uXvJi", {
         method: "POST",
         body: formData,
       })
-      
+
       // Formcarry may return various status codes (200, 302, etc.) but form is submitted
       // If we get any response (not a network error), consider it successful
       if (response.status >= 200 && response.status < 500) {
         toast({
           title: "Thank you!",
-          description: "We'll reach out to schedule your 30-minute call.",
+          description: "We'll reach out to schedule your 20-minute process audit.",
         })
         setName('')
         setEmail('')
@@ -141,7 +145,7 @@ const Hero = () => {
       // Only show error for actual network/connection errors
       // If form was submitted but response parsing failed, still show success
       console.error("Form submission error:", error)
-      
+
       // For network errors, show error message
       if (error instanceof TypeError && error.message.includes("fetch")) {
         toast({
@@ -153,7 +157,7 @@ const Hero = () => {
         // For other errors, assume form was submitted (Formcarry received it)
         toast({
           title: "Thank you!",
-          description: "We'll reach out to schedule your 30-minute call.",
+          description: "We'll reach out to schedule your 20-minute process audit.",
         })
         setName('')
         setEmail('')
@@ -573,10 +577,10 @@ const Hero = () => {
 
       <div style={heroStyles.heroContent}>
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-center">
-          CraftMind – Web & Mobile App Development in India
+          We build the CRM, ERP and automation systems that get your company off spreadsheets.
         </h1>
         <p style={heroStyles.heroDescription} className="text-justify">
-          CraftMind delivers enterprise-grade web development, mobile apps, AI/ML solutions, ERP, and CRM systems. Transform your business with scalable technology solutions in India.
+          Custom software for companies still running sales, inventory, and operations through manual work and Excel. Fewer errors, faster reporting, systems that scale with you.
         </p>
 
         <form 
@@ -621,9 +625,9 @@ const Hero = () => {
               <SelectValue placeholder="Select service" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="web-app">Web App</SelectItem>
-              <SelectItem value="mobile-app">Mobile App</SelectItem>
-              <SelectItem value="ai-ml">AI / ML</SelectItem>
+              <SelectItem value="crm">CRM system</SelectItem>
+              <SelectItem value="erp">ERP system</SelectItem>
+              <SelectItem value="automation">Workflow automation</SelectItem>
             </SelectContent>
           </Select>
           <Button
@@ -636,7 +640,7 @@ const Hero = () => {
               cursor: 'pointer',
             }}
           >
-            {isSubmitting ? 'Scheduling...' : 'Schedule 30-min call'}
+            {isSubmitting ? 'Booking...' : 'Book a 20-min process audit'}
           </Button>
         </form>
       </div>

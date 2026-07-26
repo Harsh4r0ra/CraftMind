@@ -12,9 +12,9 @@ interface SEOProps {
 }
 
 const defaultSEO = {
-  title: "CraftMind – Web & Mobile App Development in India",
-  description: "CraftMind builds scalable web development, mobile apps, AI/ML solutions, ERP and CRM systems in India. Transform your business with modern technology.",
-  keywords: "web development India, mobile app development India, AI ML solutions, enterprise software, ERP systems, CRM development, blockchain development, custom software development, hire developers India",
+  title: "CraftMind – Custom CRM, ERP & Automation Systems for Companies",
+  description: "CraftMind builds custom CRM, ERP, and workflow automation systems for companies still running operations on spreadsheets and manual processes. Based in India.",
+  keywords: "custom CRM development, ERP systems, workflow automation, business process automation India, custom software development",
   image: "/og-image.png",
   url: "https://craftmind.co.in",
   type: "website",
