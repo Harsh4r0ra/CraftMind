@@ -4,7 +4,6 @@ import WhoThisIsFor from "@/components/WhoThisIsFor";
 import ServicesGrid from "@/components/ServicesGrid";
 import HowWeWork from "@/components/HowWeWork";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import CaseStudies from "@/components/CaseStudies";
 import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -114,7 +113,6 @@ const Home = () => {
           <WhoThisIsFor />
           <ServicesGrid />
           <HowWeWork />
-          <CaseStudies />
           <WhyChooseUs />
 
           {/* Get in touch */}
