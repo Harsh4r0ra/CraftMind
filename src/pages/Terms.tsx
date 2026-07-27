@@ -54,7 +54,7 @@ const Terms = () => {
               <section>
                 <h2 className="text-2xl font-semibold mb-4">3. Services</h2>
                 <p className="text-soft">
-                  CraftMind provides web development, mobile app development, AI/ML solutions, and enterprise software services. All services are provided subject to separate service agreements and project-specific terms.
+                  CraftMind provides custom CRM, ERP, and workflow automation software development services. All services are provided subject to separate service agreements and project-specific terms.
                 </p>
               </section>
 
@@ -113,13 +113,13 @@ const Terms = () => {
                   If you have any questions about these Terms of Service, please contact us at:
                 </p>
                 <address className="not-italic text-soft mt-2">
-                  Email: <a href="mailto:info@craftminds.com" className="text-cesta-electric hover:underline">info@craftminds.com</a><br />
+                  Email: <a href="mailto:harsharora.work@gmail.com" className="text-cesta-electric hover:underline">harsharora.work@gmail.com</a><br />
                   Phone: <a href="tel:+919136474511" className="text-cesta-electric hover:underline">+91 9136474511</a>
                 </address>
               </section>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="mt-12 pt-8 border-t border-border">
               <Link to="/" className="text-cesta-electric hover:underline">
                 ← Back to Home
               </Link>

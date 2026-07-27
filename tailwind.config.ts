@@ -58,11 +58,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "cesta-dark": "hsl(240 52% 8%)",
-        "cesta-foreground": "hsl(240 14% 94%)",
-        "cesta-purple": "hsl(279 37% 27%)",
-        "cesta-electric": "hsl(272 76% 53%)",
-        "cesta-gold": "hsl(50 95% 56%)",
+        "cesta-dark": "hsl(0 0% 100%)",
+        "cesta-foreground": "hsl(222 27% 15%)",
+        "cesta-purple": "hsl(221 70% 46%)",
+        "cesta-electric": "hsl(221 70% 46%)",
+        "cesta-gold": "hsl(30 65% 40%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -114,12 +114,12 @@ export default {
         "slide-in": "slide-in 0.6s ease-out",
       },
       boxShadow: {
-        "cesta-card": "0 4px 60px hsl(0 0% 0% / 0.2)",
-        "cesta-glow": "0 15px 45px hsl(272 76% 53% / 0.25)",
+        "cesta-card": "0 1px 3px hsl(222 27% 15% / 0.06), 0 1px 2px hsl(222 27% 15% / 0.04)",
+        "cesta-glow": "0 12px 28px -12px hsl(221 70% 46% / 0.20)",
       },
       backgroundImage: {
-        "cesta-gradient": "linear-gradient(45deg, hsl(279 37% 27%), hsl(272 76% 53%), hsl(50 95% 56%))",
-        "cesta-holographic": "linear-gradient(90deg, hsl(272 76% 53%), hsl(50 95% 56%), hsl(279 37% 27%), hsl(272 76% 53%))",
+        "cesta-gradient": "linear-gradient(135deg, hsl(221 70% 46%), hsl(221 70% 40%))",
+        "cesta-holographic": "linear-gradient(135deg, hsl(221 70% 46%), hsl(221 70% 40%))",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

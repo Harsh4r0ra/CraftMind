@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
+import { MailIcon, PhoneIcon, PinIcon, SendIcon } from "@/components/icons";
 import { MessageCircle } from "lucide-react";
 import { getBreadcrumbSchema, getLocalBusinessSchema } from "@/lib/structuredData";
 import { trackFormSubmission } from "@/lib/analytics";
@@ -53,7 +53,7 @@ const Contact = () => {
       formData.append("name", values.name);
       formData.append("company", values.company);
       formData.append("whatsBroken", values.whatsBroken);
-      formData.append("formType", "Process Audit Booking");
+      formData.append("formType", "Process Audit Request");
 
       const response = await fetch("https://formcarry.com/s/luxzm-uXvJi", {
         method: "POST",
@@ -65,7 +65,7 @@ const Contact = () => {
       if (response.status >= 200 && response.status < 500) {
         toast({
           title: "Request sent!",
-          description: "We'll reach out to schedule your 20-minute process audit.",
+          description: "We'll reach out within 1-2 business days about your 20-minute process audit.",
         });
         form.reset();
       } else {
@@ -88,7 +88,7 @@ const Contact = () => {
         // For other errors, assume form was submitted (Formcarry received it)
         toast({
           title: "Request sent!",
-          description: "We'll reach out to schedule your 20-minute process audit.",
+          description: "We'll reach out within 1-2 business days about your 20-minute process audit.",
         });
         form.reset();
       }
@@ -100,7 +100,7 @@ const Contact = () => {
   const baseUrl = import.meta.env.VITE_SITE_URL || "https://craftmind.co.in";
   const contactUrl = `${baseUrl}/contact`;
   const whatsappNumber = "+919136474511";
-  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hi, I'd like to book a process audit.")}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hi, I'd like to request a process audit.")}`;
 
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: "Home", url: baseUrl },
@@ -117,7 +117,7 @@ const Contact = () => {
       addressCountry: "IN",
     },
     telephone: "+91 9136474511",
-    email: "info@craftminds.com",
+    email: "harsharora.work@gmail.com",
     url: baseUrl,
   });
 
@@ -126,8 +126,8 @@ const Contact = () => {
   return (
     <>
       <SEO
-        title="Book a Process Audit | CraftMind CRM, ERP & Automation"
-        description="Tell CraftMind what's currently manual or broken and book a 20-minute process audit. We build custom CRM, ERP, and workflow automation systems in Chennai, India. Call +91 9136474511."
+        title="Request a Process Audit | CraftMind CRM, ERP & Automation"
+        description="Tell CraftMind what's currently manual or broken and request a 20-minute process audit. We build custom CRM, ERP, and workflow automation systems in Chennai, India. Call +91 9136474511."
         image={`${baseUrl}/placeholder.svg`}
         url={contactUrl}
         structuredData={structuredData}
@@ -136,10 +136,10 @@ const Contact = () => {
         <Navbar />
       
       {/* Header Section */}
-      <section className="gradient-hero py-40">
+      <section className="gradient-hero border-b border-border py-24 md:py-32">
         <div className="container mx-auto px-4 text-center animate-fade-in">
           <h1 className="mb-6 text-4xl font-bold md:text-6xl">
-            Book a 20-min <span className="holographic-text">process audit</span>
+            Request a 20-min <span className="holographic-text">process audit</span>
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-soft md:text-xl">
             Tell us what's currently manual or broken and we'll tell you what a custom CRM, ERP, or automation system would look like for your business.
@@ -163,23 +163,23 @@ const Contact = () => {
               <address className="not-italic space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl icon-gradient-purple shadow-cesta-glow" aria-hidden="true">
-                    <FaEnvelope className="text-white text-xl" style={{ fontSize: '1.25rem' }} />
+                    <MailIcon className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a href="mailto:info@craftminds.com" className="text-soft transition-smooth hover:text-white">
-                      info@craftminds.com
+                    <a href="mailto:harsharora.work@gmail.com" className="text-soft transition-smooth hover:text-foreground">
+                      harsharora.work@gmail.com
                     </a>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl icon-gradient-gold shadow-cesta-glow" aria-hidden="true">
-                    <FaPhone className="text-white text-xl" style={{ fontSize: '1.25rem' }} />
+                    <PhoneIcon className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <a href="tel:+919136474511" className="text-soft transition-smooth hover:text-white">
+                    <a href="tel:+919136474511" className="text-soft transition-smooth hover:text-foreground">
                       +91 9136474511
                     </a>
                   </div>
@@ -187,7 +187,7 @@ const Contact = () => {
                 
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl icon-gradient-cyan shadow-cesta-glow" aria-hidden="true">
-                    <FaMapMarkerAlt className="text-white text-xl" style={{ fontSize: '1.25rem' }} />
+                    <PinIcon className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Office</h3>
@@ -208,7 +208,7 @@ const Contact = () => {
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-soft transition-smooth hover:text-white"
+                      className="text-soft transition-smooth hover:text-foreground"
                     >
                       Message us directly
                     </a>
@@ -219,8 +219,8 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="lg:col-span-2 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <div className="glass-card glass-border rounded-3xl border border-white/10 p-6 shadow-cesta-card md:p-10">
-                <h2 className="mb-6 text-2xl font-bold">Book a 20-min process audit</h2>
+              <div className="glass-card glass-border rounded-3xl p-6 shadow-cesta-card md:p-10">
+                <h2 className="mb-6 text-2xl font-bold">Request a 20-min process audit</h2>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
@@ -272,11 +272,11 @@ const Contact = () => {
                       type="submit"
                       variant="hero"
                       size="lg"
-                      className="w-full shadow-cesta-glow text-lg bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 hover:from-purple-500 hover:via-pink-400 hover:to-orange-400"
+                      className="w-full shadow-cesta-glow text-lg bg-primary text-primary-foreground hover:bg-primary/90"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Sending..." : "Book a 20-min process audit"}
-                      <FaPaperPlane className="ml-2" style={{ fontSize: '1.125rem' }} />
+                      {isSubmitting ? "Sending..." : "Request a 20-min process audit"}
+                      <SendIcon className="ml-2 h-4 w-4" />
                     </Button>
                   </form>
                 </Form>

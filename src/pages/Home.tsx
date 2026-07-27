@@ -9,6 +9,7 @@ import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import StickyContact from "@/components/StickyContact";
+import Reveal from "@/components/Reveal";
 import { MessageCircle } from "lucide-react";
 import {
   getOrganizationSchema,
@@ -29,17 +30,11 @@ const Home = () => {
     logo: `${baseUrl}/placeholder.svg`,
     description: "CraftMind builds custom CRM, ERP, and workflow automation systems for companies still running operations on spreadsheets and manual processes.",
     contactPoint: {
-      email: "info@craftminds.com",
+      email: "harsharora.work@gmail.com",
       telephone: "+91 9136474511",
       contactType: "sales",
       areaServed: ["IN", "Worldwide"],
     },
-    sameAs: [
-      "https://www.instagram.com/thecraftmindco/",
-      "https://www.facebook.com/",
-      "https://twitter.com/craftminds_tech",
-      "https://linkedin.com/company/craftminds",
-    ],
   });
 
   const websiteSchema = getWebSiteSchema({
@@ -94,7 +89,7 @@ const Home = () => {
     },
     {
       question: "How can I contact CraftMind?",
-      answer: "You can book a 20-minute process audit, email us at info@craftminds.com, or call us at +91 9136474511.",
+      answer: "You can request a 20-minute process audit, email us at harsharora.work@gmail.com, or call us at +91 9136474511.",
     },
   ]);
 
@@ -125,32 +120,33 @@ const Home = () => {
           {/* Get in touch */}
           <section className="py-16 bg-cesta-dark" aria-labelledby="get-in-touch-heading">
             <div className="container mx-auto px-4">
-              <div className="max-w-2xl mx-auto text-center">
+              <Reveal className="max-w-2xl mx-auto text-center">
+                <span className="eyebrow">Get in touch</span>
                 <h2 id="get-in-touch-heading" className="text-3xl md:text-4xl font-bold mb-6">
-                  Get in Touch
+                  Ready when you are
                 </h2>
-                <p className="text-lg text-soft mb-8 text-justify">
-                  Ready to get your team off spreadsheets? Book a 20-minute process audit and we'll tell you exactly what a custom CRM, ERP, or automation system would look like for your business.
+                <p className="text-lg text-soft mb-8">
+                  Ready to get your team off spreadsheets? Request a 20-minute process audit and we'll tell you exactly what a custom CRM, ERP, or automation system would look like for your business.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold text-white button-gradient-cta hover:shadow-glow transition-smooth"
+                    className="inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold text-primary-foreground bg-primary hover:bg-primary/90 shadow-cesta-glow transition-smooth"
                   >
-                    Book a 20-min process audit
+                    Request a 20-min process audit
                   </a>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-md border border-white/20 px-6 py-3 font-semibold text-soft hover:text-white hover:border-white/40 transition-smooth"
+                    className="inline-flex items-center justify-center gap-2 rounded-md border border-border px-6 py-3 font-semibold text-soft hover:text-foreground hover:border-foreground/30 transition-smooth"
                     aria-label="Message us on WhatsApp"
                   >
                     <MessageCircle className="h-5 w-5" aria-hidden="true" />
                     Message us on WhatsApp
                   </a>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </section>
 

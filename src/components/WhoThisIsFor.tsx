@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 const segments = [
   "Manufacturing & distribution companies still tracking orders in Excel",
   "Service businesses juggling leads across WhatsApp, email, and spreadsheets",
@@ -8,7 +10,8 @@ const WhoThisIsFor = () => {
   return (
     <section className="relative z-10 bg-cesta-dark py-16" aria-labelledby="who-this-is-for-heading">
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-3xl text-center animate-fade-in">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow">Who we help</span>
           <h2 id="who-this-is-for-heading" className="mb-6 text-2xl font-bold md:text-3xl">
             Who this is <span className="holographic-text">for</span>
           </h2>
@@ -20,7 +23,7 @@ const WhoThisIsFor = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

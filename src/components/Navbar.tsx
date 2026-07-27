@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <header>
       <nav className="fixed left-1/2 top-6 z-50 w-full -translate-x-1/2 px-4 sm:px-6" role="navigation" aria-label="Main navigation">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-cesta-overlay px-10 py-4 shadow-cesta-card backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-border bg-white/90 px-10 py-4 shadow-cesta-card backdrop-blur-xl">
         {/* Logo */}
         <Link to="/" className="text-base font-extrabold uppercase tracking-[0.6rem] holographic-text" aria-label="CraftMind Home">
           CRAFTMIND
@@ -33,8 +33,8 @@ const Navbar = () => {
               to={link.path}
               className={`text-base font-medium transition-smooth ${
                 isActive(link.path)
-                  ? "text-white"
-                  : "text-soft hover:text-white"
+                  ? "text-foreground"
+                  : "text-soft hover:text-foreground"
               }`}
               aria-label={`Navigate to ${link.name} page`}
             >
@@ -50,7 +50,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="rounded-full p-2 text-soft transition-smooth hover:text-white md:hidden"
+          className="rounded-full p-2 text-soft transition-smooth hover:text-foreground md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
           aria-expanded={isOpen}
@@ -63,7 +63,7 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <div id="mobile-menu" className="mx-auto mt-3 max-w-6xl animate-fade-in md:hidden" role="menu">
-          <div className="glass-card glass-border rounded-3xl border border-white/10 p-6 shadow-cesta-card backdrop-blur-xl">
+          <div className="glass-card glass-border rounded-3xl border p-6 shadow-cesta-card">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link
@@ -72,8 +72,8 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={`text-sm font-medium transition-smooth ${
                     isActive(link.path)
-                      ? "text-white"
-                      : "text-soft hover:text-white"
+                      ? "text-foreground"
+                      : "text-soft hover:text-foreground"
                   }`}
                 >
                   {link.name}
